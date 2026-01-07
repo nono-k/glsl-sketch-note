@@ -12,3 +12,13 @@ export type HeaderLink = {
   name: string;
   url: string;
 };
+
+export type Pages = {
+  title: string;
+  url: string;
+};
+
+export type Section = {
+  name: string;
+  slug: string;
+};
