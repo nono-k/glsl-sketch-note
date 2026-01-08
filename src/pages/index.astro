@@ -1,25 +1,39 @@
 ---
+import Container from '@/components/Container.astro';
+import HeadingLevel1 from '@/components/HeadingLevel1.astro';
 import Card from '@/components/ui/Card.astro';
 import { cardData } from '@/data/card-data';
+import { pagesData } from '@/data/pages-data';
 import Layout from '@/layouts/Layout.astro';
 ---
 
 <Layout>
-  <h1>TOPページ</h1>
+  <Container>
+    <HeadingLevel1
+      title="GLSL Sketch Note"
+      isCenter={true}
+    />
 
-  <div class="card__container">
-    {cardData.map((card) => (
-      <Card card={card} />
-    ))}
-  </div>
+    <ul class="list">
+      {pagesData.map((page) => (
+        <li class="item">
+          <a href={page.url} class="link">{page.title}</a>
+        </li>
+      ))}
+    </ul>
+  </Container>
 </Layout>
 
 <style lang="scss">
-  .card__container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin: 3rem 2rem;
-    padding-inline: 1rem;
+  .list {
+    margin-top: 1.5rem;
+    margin-left: 2.5rem;
+    > * + * {
+      margin-top: 1rem;
+    }
+  }
+
+  .list, .item {
+    list-style: inherit;
   }
 </style>
