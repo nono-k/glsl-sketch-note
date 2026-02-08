@@ -22,18 +22,33 @@ export class Gui extends Pane {
     });
   }
 
-  addSaveBtn(render: Render, scene: Scene) {
+  addSaveBtn(
+    render: Render,
+    scene: Scene,
+    size: { width?: number; height?: number } = {},
+  ) {
     const EXPORT_PARAMS = {
-      width: 1600,
-      height: 900,
-      save: () => exportJpg(render, scene, EXPORT_PARAMS.width, EXPORT_PARAMS.height),
+      width: size.width || 1600,
+      height: size.height || 900,
+      save: () =>
+        exportJpg(render, scene, EXPORT_PARAMS.width, EXPORT_PARAMS.height),
     };
 
     // biome-ignore format: este array no debe ser formateado
     const saveBtnFoler = this.addFolder({title: 'Save Image', expanded: false,});
-    saveBtnFoler.addBinding(EXPORT_PARAMS, 'width', { min: 256, max: 1920, step: 1 });
-    saveBtnFoler.addBinding(EXPORT_PARAMS, 'height', { min: 256, max: 1920, step: 1 });
+    saveBtnFoler.addBinding(EXPORT_PARAMS, 'width', {
+      min: 256,
+      max: 1920,
+      step: 1,
+    });
+    saveBtnFoler.addBinding(EXPORT_PARAMS, 'height', {
+      min: 256,
+      max: 1920,
+      step: 1,
+    });
 
-    saveBtnFoler.addButton({ title: 'Save Image' }).on('click', EXPORT_PARAMS.save);
+    saveBtnFoler
+      .addButton({ title: 'Save Image' })
+      .on('click', EXPORT_PARAMS.save);
   }
 }
