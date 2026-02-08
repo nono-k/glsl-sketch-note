@@ -18,7 +18,7 @@ const { siteBase } = siteConfig;
     <ul class="list">
       {pagesData.map((page) => (
         <li class="item">
-          <a href={`${siteBase}${page.url}`} class="link">{page.title}</a>
+          <a href={`/${siteBase}${page.url}`} class="link">{page.title}</a>
         </li>
       ))}
     </ul>
