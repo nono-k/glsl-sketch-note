@@ -1,9 +1,10 @@
 import type { HeaderLink, SiteConfig } from '@/types/config';
 
 export const siteConfig: SiteConfig = {
-  siteTitle: 'My Site',
-  siteDesc: 'My Site Description',
-  siteUrl: 'https://example.com',
+  siteTitle: 'GLSL Sketch Note',
+  siteDesc: 'GLSL Sketch Note',
+  siteUrl: 'https://nono-k.github.io',
+  siteBase: 'glsl-sketch-note',
   siteType: 'website',
   siteLocale: 'ja_JP',
   siteIcon: '/favicon.svg',
