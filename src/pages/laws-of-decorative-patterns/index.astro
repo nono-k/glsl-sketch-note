@@ -27,7 +27,7 @@ const collections = await getCollection('lawsOfDecorativePatterns');
           <ul>
             {sortPages.map((page) => (
               <li>
-                <a href={`${siteBase}/laws-of-decorative-patterns/${page.slug}`}>{page.data.title}</a>
+                <a href={`/${siteBase}/laws-of-decorative-patterns/${page.slug}`}>{page.data.title}</a>
               </li>
             ))}
           </ul>
