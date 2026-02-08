@@ -1,10 +1,11 @@
 ---
 import Container from '@/components/Container.astro';
 import HeadingLevel1 from '@/components/HeadingLevel1.astro';
-import Card from '@/components/ui/Card.astro';
-import { cardData } from '@/data/card-data';
+import { siteConfig } from '@/config';
 import { pagesData } from '@/data/pages-data';
 import Layout from '@/layouts/Layout.astro';
+
+const { siteBase } = siteConfig;
 ---
 
 <Layout>
@@ -17,7 +18,7 @@ import Layout from '@/layouts/Layout.astro';
     <ul class="list">
       {pagesData.map((page) => (
         <li class="item">
-          <a href={page.url} class="link">{page.title}</a>
+          <a href={`${siteBase}${page.url}`} class="link">{page.title}</a>
         </li>
       ))}
     </ul>

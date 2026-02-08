@@ -6,7 +6,7 @@ import { siteConfig } from '@/config';
 import { lawsOfDecorativePatternsSection } from '@/data/laws-of-decorative-patterns-data';
 import Layout from '@/layouts/Layout.astro';
 
-// const { siteBase } = siteConfig;
+const { siteBase } = siteConfig;
 
 const collections = await getCollection('lawsOfDecorativePatterns');
 ---
@@ -27,7 +27,7 @@ const collections = await getCollection('lawsOfDecorativePatterns');
           <ul>
             {sortPages.map((page) => (
               <li>
-                <a href={`/laws-of-decorative-patterns/${page.slug}`}>{page.data.title}</a>
+                <a href={`${siteBase}/laws-of-decorative-patterns/${page.slug}`}>{page.data.title}</a>
               </li>
             ))}
           </ul>
