@@ -29,6 +29,7 @@ export const onload = () => {
     uniforms: {
       uResolution: { value: [canvas.width, canvas.height] },
       isUv: { value: false },
+      offsetX: { value: 0.5 },
     },
   });
 
@@ -50,17 +51,22 @@ export const onload = () => {
   window.addEventListener('resize', resize);
 
   const isUv = program.uniforms.isUv;
+  const offsetX = program.uniforms.offsetX;
+  const offsetY = program.uniforms.offsetY;
 
   const PARAMS = {
     isUv: isUv.value,
+    offsetX: offsetX.value,
   };
 
   // biome-ignore format: este array no debe ser formateado
   const pane = new Gui();
   pane.addBinding(PARAMS, 'isUv', { label: 'uv' });
-  pane.addSaveBtn(render, scene);
+  pane.addBinding(PARAMS, 'offsetX', { min: 0, max: 1, step: 0.01 });
+  pane.addSaveBtn(render, scene, { width: 800, height: 800 });
 
   pane.on('change', e => {
     isUv.value = PARAMS.isUv;
+    offsetX.value = PARAMS.offsetX;
   });
 };

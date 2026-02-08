@@ -3,6 +3,7 @@ precision mediump float;
 
 uniform vec2 uResolution;
 uniform bool isUv;
+uniform float offsetX;
 
 in vec2 vUv;
 out vec4 fragColor;
@@ -31,28 +32,24 @@ vec2 repeatP1(vec2 uv, vec2 tile, float offsetX) {
   vec2 p = uv * tile;
 
   float row = floor(p.y);
-  p.x += row * offsetX;
+  p.x += mod(row, 2.0) == 0.0 ? offsetX : 0.0; // 偶数行のみ移動させる
 
   return fract(p);
 }
 
 void main() {
   vec2 uv = vUv;
-  vec2 pos = 1.0 / uResolution;
 
   vec2 tile = vec2(6.0);
-  float offsetX = 0.5;
-
   vec2 tuv = repeatP1(uv, tile, offsetX);
 
-  vec2 p0 = vec2(1.0, 1.0);
-  vec2 p1 = vec2(0.0, 0.0);
-  vec2 p2 = vec2(1.0, 0.0);
+  vec2 p0 = vec2(0.0, 0.0);
+  vec2 p1 = vec2(0.0, 1.0);
+  vec2 p2 = vec2(1.0, 1.0);
 
-  // vec3 color = vec3(tuv, 0.0);
   vec3 color = isUv ?
     vec3(tuv, 0.0) :
-    vec3(1.0 - triangle(tuv, p0, p1, p2));
+    vec3(triangle(tuv, p0, p1, p2));
 
   fragColor = vec4(color, 1.0);
 }
