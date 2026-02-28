@@ -58,7 +58,7 @@ export const onload = () => {
   // biome-ignore format: este array no debe ser formateado
   const pane = new Gui();
   pane.addBinding(PARAMS, 'isUv', { label: 'uv' });
-  pane.addSaveBtn(render, scene);
+  pane.addSaveBtn(render, scene, { width: 800, height: 800 });
 
   pane.on('change', e => {
     isUv.value = PARAMS.isUv;
