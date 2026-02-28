@@ -28,20 +28,22 @@ float triangle(vec2 uv, vec2 p0, vec2 p1, vec2 p2) {
 }
 
 vec2 repeatP2(vec2 uv, vec2 tile) {
-    vec2 p = uv * tile;
-    vec2 id = floor(p);
-    vec2 f = fract(p) - 0.5;
+  vec2 p = uv * tile;
+  vec2 center = vec2(0.5);
 
-    float parity = mod(id.y, 2.0);
+  vec2 id = floor(p);
+  vec2 f = fract(p) - center;
 
-    mat2 R = mat2(
-      -1.0, 0.0,
-      0.0,-1.0
-    );
+  float parity = mod(id.y, 2.0);
 
-    f = mix(f, R * f, parity);
+  mat2 R = mat2(
+    -1.0, 0.0,
+    0.0,-1.0
+  );
 
-    return R * f + 0.5;
+  f = mix(R * f, f, parity);
+
+  return f + center;
 }
 
 void main() {
