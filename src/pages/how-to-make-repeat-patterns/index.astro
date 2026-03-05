@@ -3,22 +3,22 @@ import { getCollection } from 'astro:content';
 import Container from '@/components/Container.astro';
 import HeadingLevel1 from '@/components/HeadingLevel1.astro';
 import { siteConfig } from '@/config';
-import { lawsOfDecorativePatternsSection } from '@/data/laws-of-decorative-patterns-data';
+import { howToMakeRepeatPatternsSection } from '@/data/how-to-make-repeat-patterns';
 import Layout from '@/layouts/Layout.astro';
 
 const { siteBase } = siteConfig;
 
-const collections = await getCollection('lawsOfDecorativePatterns');
+const collections = await getCollection('howToMakeRepeatPatterns');
 ---
 
 <Layout>
   <Container>
     <HeadingLevel1
-      title="装飾パターンの法則"
+      title="幾何学パターンづくりのすべて"
       isCenter={true}
     />
 
-    {lawsOfDecorativePatternsSection.map((item) => {
+    {howToMakeRepeatPatternsSection.map((item) => {
       const filterPages = collections.filter((page) => page.data.section === item.name);
       const sortPages = filterPages.sort((a, b) => a.data.order - b.data.order);
       return (
@@ -27,16 +27,16 @@ const collections = await getCollection('lawsOfDecorativePatterns');
           <ul>
             {sortPages.map((page) => (
               <li>
-                <a href={`/${siteBase}/laws-of-decorative-patterns/${page.slug}`}>{page.data.title}</a>
+                <a href={`/${siteBase}/how-to-make-repeat-patterns/${page.slug}`}>{page.data.title}</a>
               </li>
             ))}
           </ul>
 
           <div class="image-wrap">
             {sortPages.map(page => (
-              <a href={`/${siteBase}/laws-of-decorative-patterns/${page.slug}`}  class="image">
+              <a href={`/${siteBase}/how-to-make-repeat-patterns/${page.slug}`} class="image">
                 <img
-                  src={`/${siteBase}/images/laws-of-decorative-patterns/${page.slug}.jpg`}
+                  src={`/${siteBase}/images/how-to-make-repeat-patterns/${page.slug}.jpg`}
                   alt={page.data.title}
                   width={160}
                   height={160}
