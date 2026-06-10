@@ -1,33 +1,35 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const constructionTraining = defineCollection({
-  type: 'content',
-  schema: () =>
-    z.object({
-      title: z.string(),
-      section: z.string(),
-      order: z.number(),
-    }),
+  loader: glob({ pattern: 'src/content/constructionTraining/*.mdx' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    section: z.string(),
+    order: z.number(),
+  }),
 });
 
 const lawsOfDecorativePatterns = defineCollection({
-  type: 'content',
-  schema: () =>
-    z.object({
-      title: z.string(),
-      section: z.string(),
-      order: z.number(),
-    }),
+  loader: glob({ pattern: 'src/content/lawsOfDecorativePatterns/*.mdx' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    section: z.string(),
+    order: z.number(),
+  }),
 });
 
 const howToMakeRepeatPatterns = defineCollection({
-  type: 'content',
-  schema: () =>
-    z.object({
-      title: z.string(),
-      section: z.string(),
-      order: z.number(),
-    }),
+  loader: glob({ pattern: 'src/content/howToMakeRepeatPatterns/*.mdx' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    section: z.string(),
+    order: z.number(),
+  }),
 });
 
 export const collections = {

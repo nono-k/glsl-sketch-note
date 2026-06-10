@@ -27,16 +27,16 @@ const collections = await getCollection('howToMakeRepeatPatterns');
           <ul>
             {sortPages.map((page) => (
               <li>
-                <a href={`/${siteBase}/how-to-make-repeat-patterns/${page.slug}`}>{page.data.title}</a>
+                <a href={`/${siteBase}/how-to-make-repeat-patterns/${page.data.slug}`}>{page.data.title}</a>
               </li>
             ))}
           </ul>
 
           <div class="image-wrap">
             {sortPages.map(page => (
-              <a href={`/${siteBase}/how-to-make-repeat-patterns/${page.slug}`} class="image">
+              <a href={`/${siteBase}/how-to-make-repeat-patterns/${page.data.slug}`} class="image">
                 <img
-                  src={`/${siteBase}/images/how-to-make-repeat-patterns/${page.slug}.jpg`}
+                  src={`/${siteBase}/images/how-to-make-repeat-patterns/${page.data.slug}.jpg`}
                   alt={page.data.title}
                   width={160}
                   height={160}

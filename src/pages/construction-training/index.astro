@@ -27,7 +27,7 @@ const collections = await getCollection('constructionTraining');
           <ul>
             {sortPages.map((page) => (
               <li>
-                <a href={`/${siteBase}/construction-training/${page.slug}`}>{page.data.title}</a>
+                <a href={`/${siteBase}/construction-training/${page.data.slug}`}>{page.data.title}</a>
               </li>
             ))}
           </ul>

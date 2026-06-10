@@ -8,7 +8,7 @@ import Layout from '@/layouts/Layout.astro';
 
 const { siteBase } = siteConfig;
 
-const collections = await getCollection('lawsOfDecorativePatterns');
+const _collections = await getCollection('lawsOfDecorativePatterns');
 ---
 
 <Layout>
@@ -19,7 +19,7 @@ const collections = await getCollection('lawsOfDecorativePatterns');
     />
 
     {lawsOfDecorativePatternsSection.map((item) => {
-      const filterPages = collections.filter((page) => page.data.section === item.name);
+      const filterPages = _collections.filter((page) => page.data.section === item.name);
       const sortPages = filterPages.sort((a, b) => a.data.order - b.data.order);
       return (
         <section>
@@ -27,16 +27,16 @@ const collections = await getCollection('lawsOfDecorativePatterns');
           <ul>
             {sortPages.map((page) => (
               <li>
-                <a href={`/${siteBase}/laws-of-decorative-patterns/${page.slug}`}>{page.data.title}</a>
+                <a href={`/${siteBase}/laws-of-decorative-patterns/${page.data.slug}`}>{page.data.title}</a>
               </li>
             ))}
           </ul>
 
           <div class="image-wrap">
             {sortPages.map(page => (
-              <a href={`/${siteBase}/laws-of-decorative-patterns/${page.slug}`}  class="image">
+              <a href={`/${siteBase}/laws-of-decorative-patterns/${page.data.slug}`}  class="image">
                 <img
-                  src={`/${siteBase}/images/laws-of-decorative-patterns/${page.slug}.jpg`}
+                  src={`/${siteBase}/images/laws-of-decorative-patterns/${page.data.slug}.jpg`}
                   alt={page.data.title}
                   width={160}
                   height={160}
