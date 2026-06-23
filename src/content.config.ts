@@ -32,8 +32,19 @@ const howToMakeRepeatPatterns = defineCollection({
   }),
 });
 
+const others = defineCollection({
+  loader: glob({ pattern: 'src/content/others/*.mdx' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    section: z.string(),
+    order: z.number(),
+  }),
+});
+
 export const collections = {
   constructionTraining,
   lawsOfDecorativePatterns,
   howToMakeRepeatPatterns,
+  others,
 };

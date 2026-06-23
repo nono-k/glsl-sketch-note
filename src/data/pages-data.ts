@@ -13,4 +13,8 @@ export const pagesData: Pages[] = [
     title: '幾何学パターンづくりのすべて',
     url: '/how-to-make-repeat-patterns',
   },
+  {
+    title: 'その他',
+    url: '/others',
+  },
 ];

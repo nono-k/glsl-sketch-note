@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import Container from '@/components/Container.astro';
+import HeadingLevel1 from '@/components/HeadingLevel1.astro';
+import { siteConfig } from '@/config';
+import { othersSection } from '@/data/others-data';
+import Layout from '@/layouts/Layout.astro';
+
+const { siteBase } = siteConfig;
+
+const _collections = await getCollection('others');
+---
+
+<Layout>
+  <Container>
+    <HeadingLevel1
+      title="その他"
+      isCenter={true}
+    />
+
+    {othersSection.map((item) => {
+      const filterPages = _collections.filter((page) => page.data.section === item.name);
+      const sortPages = filterPages.sort((a, b) => a.data.order - b.data.order);
+      return (
+        <section>
+          <h2>{item.name}</h2>
+          <ul>
+            {sortPages.map((page) => (
+              <li>
+                <a href={`/${siteBase}/others/${page.data.slug}`}>{page.data.title}</a>
+              </li>
+            ))}
+          </ul>
+
+          <div class="image-wrap">
+            {sortPages.map(page => (
+              <a href={`/${siteBase}/others/${page.data.slug}`}  class="image">
+                <img
+                  src={`/${siteBase}/images/others/${page.data.slug}.jpg`}
+                  alt={page.data.title}
+                  width={160}
+                  height={160}
+                />
+                <div class="image-text">{page.data.title}</div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    })}
+  </Container>
+</Layout>
+
+<style lang="scss">
+  .image-wrap {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+
+    .image {
+      width: 160px;
+      border: 1px solid #000;
+      position: relative;
+
+      @include mixin.hover {
+        .image-text {
+          opacity: 1;
+        }
+      }
+    }
+
+    .image-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  }
+</style>
