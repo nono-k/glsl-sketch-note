@@ -1,7 +1,7 @@
-import type { Render, Scene } from '@/lib/webgl';
 import * as EssentialsPlugin from '@tweakpane/plugin-essentials';
 import type { ImageMetadata } from 'astro';
 import { Pane } from 'tweakpane';
+import type { Render, Scene } from '@/lib/webgl';
 import { exportJpg } from './ExportJpg';
 
 export class Gui extends Pane {
@@ -22,16 +22,11 @@ export class Gui extends Pane {
     });
   }
 
-  addSaveBtn(
-    render: Render,
-    scene: Scene,
-    size: { width?: number; height?: number } = {},
-  ) {
+  addSaveBtn(render: Render, scene: Scene, size: { width?: number; height?: number } = {}) {
     const EXPORT_PARAMS = {
       width: size.width || 1600,
       height: size.height || 900,
-      save: () =>
-        exportJpg(render, scene, EXPORT_PARAMS.width, EXPORT_PARAMS.height),
+      save: () => exportJpg(render, scene, EXPORT_PARAMS.width, EXPORT_PARAMS.height),
     };
 
     // biome-ignore format: este array no debe ser formateado
@@ -47,8 +42,6 @@ export class Gui extends Pane {
       step: 1,
     });
 
-    saveBtnFoler
-      .addButton({ title: 'Save Image' })
-      .on('click', EXPORT_PARAMS.save);
+    saveBtnFoler.addButton({ title: 'Save Image' }).on('click', EXPORT_PARAMS.save);
   }
 }
