@@ -9,4 +9,8 @@ export const othersSection: Section[] = [
     name: 'ノイズ',
     slug: 'section02',
   },
+  {
+    name: 'レイマーチング',
+    slug: 'section03',
+  },
 ];
